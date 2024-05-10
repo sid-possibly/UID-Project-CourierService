@@ -1,0 +1,210 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #050404;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #f30404;
+    left: 0;
+    bottom: -6px;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+
+
+
+
+
+.queries {
+    background-image: url('https://img.freepik.com/free-vector/realistic-hand-drawn-arrow-collection_23-2148880730.jpg?size=626&ext=jpg&ga=GA1.1.1759208634.1714489769&semt=ais');
+    background-size: cover;
+    background-position: center; 
+    position: relative; 
+    z-index: 1;
+    max-width: 800px;
+    margin-top: 50px; 
+    margin-right: auto; 
+    padding: 20px;
+    background-color: #2d2c2c;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(61, 58, 58, 0.1);
+    text-align: left;
+    padding-right: 8px;
+    padding-left: 16px;
+}
+
+.faq-heading {
+    color: #050404;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.query {
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.accordion {
+    background-color: transparent; 
+    color: #050404;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.accordion:hover {
+    border-radius: 20px;
+    background-color: #865656;
+}
+
+.panel {
+border-radius: 20px;
+    background-color: transparent; 
+    padding: 0 18px;
+    display: none;
+    background-color: #ccb4b4;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.panel.active {
+    display: block;
+}
+.contact-section {
+    text-align: center;
+}
+
+.contact-box {
+    background-color: #7d5e5e;
+    border-radius: 50px; 
+    padding: 20px;
+    margin: 20px auto; 
+    display: inline-block; 
+    max-width: 150%; 
+}
+
+.contact-form {
+    display: none; 
+    background-color: #f9f9f9;
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    padding: 20px;
+    margin: 20px auto; 
+    max-width: 500px;
+}
+
+.contact-form form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form input[type="submit"] {
+    background-color: #050404;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.thank-you-message {
+    background-color: #fff;
+    border-radius: 50px; 
+    padding: 20px;
+    margin: 20px auto; 
+    display: none; 
+    max-width: 80%; 
+}
+.content{
+    padding-left: 425px;
+}
+.box {
+    position: absolute;
+    top: 88%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    color: #d8cccf;
+    text-align: left;
+    font-size: xx-large;
+   
+}
+.image-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    background: url('https://i.ibb.co/B2hRKzr/pixelcut-export-1.jpg') no-repeat center center/cover;
+    
+} 
+
+.header-image {
+    margin-right: 20px; 
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}

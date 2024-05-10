@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Courgette&family=Dancing+Script:wght@400..700&family=Kode+Mono:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Protest+Revolution&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    background: url(truxkumg.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    padding: 20px 100px;
+    
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo 
+{
+    font-size:2em;
+    color:#fff;
+    user-select: none;
+}
+
+.navigation a
+{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+
+}
+
+.navigation a::after
+{
+    content: '';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:100%;
+    height: 3px;
+    background: #f30404;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover::after
+{
+    transform-origin: left;
+    transform: scaleX(1)
+}
+
+
+.navigation .btnLogin-popup
+{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #ffff;
+    outline: none;
+    border-radius: 6px;
+    cursor:pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+
+}
+
+.navigation .btnLogin-popup:hover{
+    background: #fff;
+    color: #162938;
+
+}
+
+.tracking-container {
+    height: 380px;
+    width: 380px;
+    margin-left: 80px;
+    margin-top: 100px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+  
+  .tracking-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .tracking-options {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .tracking-options label {
+    margin-bottom: 10px;
+  }
+  
+  .input-group {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .input-group input::placeholder {
+    color: #fff;
+  }
+
+  .track-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .track-btn:hover {
+    background-color: #c70000;
+  }

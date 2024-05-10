@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Courier Service Booking</title>
+    <link rel="stylesheet" href="style_booking.css">
+</head>
+<body>
+    <div class="background">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="Main_Track.html">Track</a></li>
+                <li><a href="c.html">Contact</a></li>
+                <li><a href="#" style="color: rgb(195, 42, 25);">SSSD Courier Service</a></li>
+                <li><a href="#" id="sign-in">Sign In</a></li>
+                <li><a href="#" id="sign-up">Sign Up</a></li>
+            </ul>
+        </nav><br><br><br><br><br>
+        <div class="booking-form" >
+            <h2>Enter Delivery Details</h2>
+            <form id="bookingForm" onsubmit="return false;">
+                <label for="deliveryAddress">Delivery Address:</label>
+                <textarea id="deliveryAddress" name="deliveryAddress" rows="3" required></textarea>
+
+                <label for="pickupAddress">Pickup Address:</label>
+                <textarea id="pickupAddress" name="pickupAddress" rows="3" required></textarea>
+                <br>
+                <button onclick="prevStep('Page 2.html')">Previous</button>
+                <button onclick="nextStep('Page 4.html')">Next</button>
+
+            </form>
+            <script>
+                function prevStep(prevPage) {
+                    window.location.href = prevPage;
+                }
+
+                function nextStep(nextPage) {
+                    sessionStorage.setItem('deliveryAddress', document.getElementById('deliveryAddress').value);
+                    sessionStorage.setItem('pickupAddress', document.getElementById('pickupAddress').value);
+            
+                    window.location.href = nextPage;
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

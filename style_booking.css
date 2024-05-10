@@ -1,0 +1,105 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body,html{
+    height: 100%;
+    margin: 0;
+    font-family: 'poppins',sans-serif;
+}
+.background{
+    height:100vh;
+    background-image: url('background1.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+.booking-form{
+
+    background-color: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 80%;
+    margin: 0 auto;
+}
+.booking-form h2{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.booking-form form{
+    display: flex;
+    flex-direction: column;
+}
+.booking-form input{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.booking-form button{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    margin-top:10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.booking-form button:hover{
+    background-color: #45a049;
+}
+label{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+nav {
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+nav ul li {
+    display:inline-block;
+    margin: 10px 20px;
+    font-weight: 400;
+}
+
+nav ul li a {
+    color:#f5f0f0;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 18px;
+    position:sticky;
+}
+
+nav ul li a::after {
+    content: ' ';
+    width: 0;
+    height: 3px;
+    background-color: #f30404;
+    position: absolute;
+    left:0;
+    bottom: -6px;
+    transition: 0.75s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li #sign-in,
+nav ul li #sign-up {
+    margin-left: auto;
+    margin-right: 0;
+}   

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website With Login & Registration | Codehal</title>
+    <link rel="stylesheet" href="Style_Main_Track.css">
+</head>
+<body>
+    <header>
+        <h2 class="logo">SDSS</h2>
+        <nav class="navigation">
+            <a href="index.html">Home</a>
+            <a href="Page 1.html">Booking</a>
+            <a href="Main_Track.html">Tracking</a>
+            <a href="c.html">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginButton = document.querySelector('.btnLogin-popup');
+            
+            if (loginButton) {
+                loginButton.addEventListener('click', function() {
+                    window.location.href = 'LoginPage.html'; 
+                });
+            }
+        });
+    </script>
+
+    
+    <div class="tracking-container">
+        <h2>TRACK YOUR ORDER</h2>
+        <div class="tracking-options">
+            <label>
+                <input type="radio" name="tracking-method" value="mobile" checked>
+                Mobile Number
+            </label>
+            <label>
+                <input type="radio" name="tracking-method" value="tracking">
+                Tracking ID
+            </label>
+            <label>
+                <input type="radio" name="tracking-method" value="order">
+                Order ID / Ref ID
+            </label>
+            <label>
+                <input type="radio" name="tracking-method" value="awb">
+                AWB Number
+            </label>
+        </div>
+        <div class="input-group">
+            <input type="text" id="tracking-input" placeholder="Enter Mobile Number">
+        </div>
+        <button class="track-btn">Track Your Order</button>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const trackBtn = document.querySelector('.track-btn');
+
+    trackBtn.addEventListener('click', function() {
+        const trackingMethod = document.querySelector('input[name="tracking-method"]:checked').value;
+        const trackingInput = document.getElementById('tracking-input').value.trim();
+
+        if (validateInput(trackingMethod, trackingInput)) {
+            window.location.href = `TrackPage_2.html?method=${trackingMethod}&input=${trackingInput}`;
+        } else {
+            alert('Invalid input. Please enter a valid value.');
+        }
+    });
+
+    function validateInput(method, input) {
+        if (method === 'mobile') {
+            return /^\d{10}$/.test(input); 
+        } else if (method === 'tracking' || method === 'order' || method === 'awb') {
+            return input.trim() !== ''; 
+        }
+        return false; 
+    }
+});
+
+        
+        const radioButtons = document.getElementsByName('tracking-method');
+        const inputField = document.getElementById('tracking-input');
+
+        radioButtons.forEach((radioButton) => {
+            radioButton.addEventListener('click', () => {
+                switch (radioButton.value) {
+                    case 'mobile':
+                        inputField.placeholder = 'Enter Mobile Number';
+                        break;
+                    case 'tracking':
+                        inputField.placeholder = 'Enter Tracking ID';
+                        break;
+                    case 'order':
+                        inputField.placeholder = 'Enter Order ID/Ref ID';
+                        break;
+                    case 'awb':
+                        inputField.placeholder = 'Enter AWB Number';
+                        break;
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
