@@ -16,46 +16,115 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">Booking</a></li>
                 <li><a href="Main_Track.html">Track</a></li>
-                <li><a href="c.html">Contact</a></li>
-                <li><a href="#" style="color: rgb(195, 42, 25);">SSSD Courier Service</a></li>
+                <li><a href="c.html">Contact</li>
+                <li><a href="#" style="color: rgb(195, 42, 25);">SDSS Courier Service</a></li>
                 <li><a href="#" id="sign-in">Sign In</a></li>
                 <li><a href="#" id="sign-up">Sign Up</a></li>
             </ul>
         </nav>
-        <div class="booking-form" >
+        <div class="booking-form">
             <h2>Confirmation and Submission</h2>
             <form id="bookingForm" onsubmit="return false;">
                 <p><strong>Booking Details:</strong></p>
                 <p>Full Name: <span id="fullName"></span></p>
                 <p>Email: <span id="email"></span></p>
                 <p>Phone Number: <span id="phone"></span></p>
+                <p>Parcel Item: <span id="parcelItem"></span></p>
                 <p>Pickup Address: <span id="pickupAddress"></span></p>
                 <p>Delivery Address: <span id="deliveryAddress"></span></p>
-                <p>Parcel Description: <span id="parcelDesc"></span></p>
                 <br>
                 <button onclick="prevStep('Page 3.html')">Previous</button>
-                <button onclick="submitBooking()">Confirm & Submit</button>
-
+                <button id="orderConfirmbtn" onclick="submitBooking()">Confirm & Submit</button>
             </form>
-            <script>
-                document.getElementById('fullName').innerText = sessionStorage.getItem('fullName');
-                document.getElementById('email').innerText = sessionStorage.getItem('email');
-                document.getElementById('phone').innerText = sessionStorage.getItem('phone');
-                document.getElementById('pickupAddress').innerText = sessionStorage.getItem('pickupAddress');
-                document.getElementById('deliveryAddress').innerText = sessionStorage.getItem('deliveryAddress');
-                document.getElementById('parcelDesc').innerText = sessionStorage.getItem('parcelDesc');
-
-                function prevStep(prevPage) {
-                    window.location.href = prevPage;
-                }
-
-                function submitBooking() {
-                    alert('Booking submitted successfully!');
-                    sessionStorage.clear();
-                    window.location.href = 'index.html';
-                }
-            </script>
         </div>
     </div>
+
+
+    <script>
+        document.getElementById('fullName').innerText = sessionStorage.getItem('fullName');
+        document.getElementById('email').innerText = sessionStorage.getItem('email');
+        document.getElementById('phone').innerText = sessionStorage.getItem('phone');
+        document.getElementById('parcelItem').innerText = sessionStorage.getItem('parcelItem');
+        document.getElementById('pickupAddress').innerText = sessionStorage.getItem('pickupAddress');
+        document.getElementById('deliveryAddress').innerText = sessionStorage.getItem('deliveryAddress');
+        // document.getElementById('parcelDesc').innerText = sessionStorage.getItem('parcelDesc');
+        
+
+        function prevStep(prevPage) {
+            window.location.href = prevPage;
+        }
+    
+        function submitBooking() {
+            console.log("button clicked")
+        const dataToSend = {
+        orderId: generateOrderId(), // Include orderId
+        trackingId: generateTrackingId(), // Include trackingId
+        fullName: document.getElementById('fullName').innerText,
+        email: document.getElementById('email').innerText,
+        phoneNumber: document.getElementById('phone').innerText,
+        parcelItem: document.getElementById('parcelItem').innerText,
+        // parcelDescription: document.getElementById('parcelDesc').innerText,
+        departureDate: new Date().toISOString().split('T')[0], // Include departureDate
+        deliveryAddress: document.getElementById('deliveryAddress').innerText,
+        pickupAddress: document.getElementById('pickupAddress').innerText,
+        expectedDeliveryDate: getExpectedDeliveryDate(),
+        statusDelivery: getRandomStatus() // Include expectedDeliveryDate
+    };
+
+    const statusDelivery = getRandomStatus(); // new adjustement for progress bar dynamic
+    sessionStorage.setItem('statusDelivery', statusDelivery); // new adjustement for progress bar dynamic
+
+    fetch('http://localhost:3000/submitBooking' ,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+    })
+   .then(response => {
+        if (response.ok){
+            sessionStorage.setItem('orderId', dataToSend.orderId);
+            sessionStorage.setItem('trackingId', dataToSend.trackingId);
+            sessionStorage.setItem('expectedDeliveryDate', dataToSend.expectedDeliveryDate);
+            sessionStorage.setItem('orderItem', dataToSend.parcelItem);
+
+            window.location.href = 'TrackPage_2.html';
+        }
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        return response.text(); // Assuming the server sends text responses
+    })
+//    .then(message => {
+//         alert(message); 
+//     })
+   .catch(error => {
+        console.error('Error:', error);
+    });
+
+    
+}
+        function generateRandomString(length) {
+            return Math.random().toString(length + 1).substring(2, length + 2);
+        }
+    
+        function generateOrderId() {
+            return generateRandomString(5) + generateRandomString(5); // 10 characters total
+        }
+    
+        function generateTrackingId() {
+            return generateRandomString(10); // Exactly 10 digits
+        }
+    
+        function getExpectedDeliveryDate() {
+            const today = new Date();
+            const fourDaysFromNow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5);
+            return fourDaysFromNow.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        }
+        function getRandomStatus() {
+    const statuses = ['processing', 'shipped', 'out-of-delivered'];
+    return statuses[Math.floor(Math.random() * statuses.length)];
+}
+    </script>
 </body>
 </html>

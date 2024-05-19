@@ -61,24 +61,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        const trackBtn = document.querySelector('.track-btn');
+    const trackBtn = document.querySelector('.track-btn');
 
     trackBtn.addEventListener('click', function() {
         const trackingMethod = document.querySelector('input[name="tracking-method"]:checked').value;
         const trackingInput = document.getElementById('tracking-input').value.trim();
 
         if (validateInput(trackingMethod, trackingInput)) {
-            window.location.href = `TrackPage_2.html?method=${trackingMethod}&input=${trackingInput}`;
+            fetch(`/getOrderDetails?${trackingMethod}=${trackingInput}`)
+               .then(response => response.json())
+               .then(data => {
+                    sessionStorage.setItem('orderId', data.orderId);
+                    sessionStorage.setItem('trackingId', data.trackingId);
+                    sessionStorage.setItem('expectedDeliveryDate', data.expectedDeliveryDate);
+                    sessionStorage.setItem('orderItem', data.parcelItem);
+                    sessionStorage.setItem('statusDelivery', data.statusDelivery);
+                    window.location.href = `TrackPage_2.html`;
+                })
+               .catch(error => {
+                    alert('Error fetching order details. Please try again later.');
+                });
         } else {
             alert('Invalid input. Please enter a valid value.');
         }
-    });
+        });
 
     function validateInput(method, input) {
         if (method === 'mobile') {
             return /^\d{10}$/.test(input); 
         } else if (method === 'tracking' || method === 'order' || method === 'awb') {
-            return input.trim() !== ''; 
+            return input.trim()!== ''; 
         }
         return false; 
     }

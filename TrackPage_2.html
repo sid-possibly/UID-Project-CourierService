@@ -98,7 +98,7 @@ header{
 .card {
     z-index: 0;
     background-color: #ECEFF1;
-    padding-bottom: 20px;
+    padding: 20px;
     margin-top: 90px;
     margin-bottom: 90px;
     border-radius: 10px;
@@ -229,24 +229,27 @@ header{
         <div class="card">
             <div class="row d-flex justify-content-between px-3 top">
                 <div class="d-flex">
-                    <h5>ORDER <span class="text-primary font-weight-bold">NIKE SHOES</span></h5>
+                    <h5>ORDER <span class="text-primary font-weight-bold" id="orderItemDisplay"></span></h5>
                 </div>
+                
                 <div class="d-flex flex-column text-sm-right">
-                    <p class="mb-0">Expected Arrival <span>09/05/2024</span></p>
-                    <p>Order ID: <span class="font-weight-bold">23422898</span></p>
+                    <p class="mb-0">Expected Arrival: <span id="expectedDeliveryDate"> </span></p>
+                    <p>Order ID: <span class="font-weight-bold" id="orderId"></span></p>
+                    <p>Tracking ID: <span class="font-weight-bold" id="trackingId"></span></p>
                 </div>
             </div>
             
             <div class="row d-flex justify-content-center">
                 <div class="col-12">
                 <ul id="progressbar" class="text-center">
-                    <li class="active step0"></li>
-                    <li class="active step0"></li>
+                    <li class="active"></li>
+                    <li class="active"></li>
                     <li class="step0"></li>
                     <li class="step0"></li>
                 </ul>
                 </div>
             </div>
+
             <div class="row justify-content-between top">
                 <div class="row d-flex icon-content">
                     <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
@@ -263,13 +266,14 @@ header{
                 <div class="row d-flex icon-content">
                     <img class="icon" src="https://i.imgur.com/TkPm63y.png">
                     <div class="d-flex flex-column">
-                        <p class="font-weight-bold">Order<br>En Route</p>
+                        <p class="font-weight-bold">Order<br>On The way</p>
                     </div>
                 </div>
                 <div class="row d-flex icon-content">
                     <img class="icon" src="https://i.imgur.com/HdsziHP.png">
                     <div class="d-flex flex-column">
                         <p class="font-weight-bold">Order<br>Arrived</p>
+
                         <a href="#" class="btn btn-warning" id="backToOrdersBtn" data-abc="true">
                             <i class="fa fa-chevron-left"></i> Back to orders
                         </a>
@@ -293,4 +297,56 @@ header{
 });
 
     </script>
+
+
+
+
+
+   
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const orderId = sessionStorage.getItem('orderId') || '123456';
+        const trackingId = sessionStorage.getItem('trackingId') || 'TRK123456';
+        const expectedDeliveryDate = sessionStorage.getItem('expectedDeliveryDate') || '2024-05-25';
+        const orderItem = sessionStorage.getItem('orderItem') || 'Default Item';
+        const statusDelivery = sessionStorage.getItem('statusDelivery') || 'processing';
+
+        // Display order details
+        document.getElementById('orderId').textContent = orderId;
+        document.getElementById('trackingId').textContent = trackingId;
+        document.getElementById('expectedDeliveryDate').textContent = expectedDeliveryDate;
+        document.getElementById('orderItemDisplay').textContent = orderItem;
+
+        // Calculate progress percentage
+        let progressPercentage;
+        switch(statusDelivery) {
+            case 'processing':
+                progressPercentage = 25;
+                break;
+            case 'shipped':
+                progressPercentage = 50;
+                break;
+            case 'on-the-way':
+                progressPercentage = 75;
+                break;
+            case 'arrived':
+                progressPercentage = 100;
+                break;
+            default:
+                progressPercentage = 0;
+        }
+
+        // Update the progress bar
+        const progressBar = document.getElementById('progressbar');
+        progressBar.innerHTML = ''; // Clear previous steps
+        for(let i = 0; i < 4; i++) {
+            const step = document.createElement('li');
+            step.className = 'step0';
+            if(i <= progressPercentage / 25 - 1) {
+                step.classList.add('active');
+            }
+            progressBar.appendChild(step);
+        }
+    });
+</script>
 </html>
